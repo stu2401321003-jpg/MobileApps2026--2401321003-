@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Една карта в решетката на гардероба. -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+    app:cardElevation="0dp"
+    app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
+    app:strokeWidth="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Зона за снимката (4:5). Фонът се оцветява според типа дреха. -->
+        <FrameLayout
+            android:id="@+id/photo_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="4:5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/type_jacket">
+
+            <!-- Голяма икона на типа - вижда се, когато няма снимка -->
+            <ImageView
+                android:id="@+id/image_type_icon"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:alpha="0.85"
+                android:importantForAccessibility="no"
+                app:tint="@color/on_type"
+                tools:src="@drawable/ic_type_jacket" />
+
+            <!-- Самата снимка (зарежда се с Coil) -->
+            <ImageView
+                android:id="@+id/image_photo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:importantForAccessibility="no"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
+            <!-- Значка „става за дъжд“ -->
+            <ImageView
+                android:id="@+id/badge_waterproof"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_badge_circle"
+                android:contentDescription="@string/waterproof"
+                android:padding="7dp"
+                android:src="@drawable/ic_water_drop"
+                app:tint="?attr/colorPrimary" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="14dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceTitleSmall"
+            android:textColor="?attr/colorOnSurface"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/photo_container"
+            tools:text="Черно зимно яке" />
+
+        <TextView
+            android:id="@+id/text_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_name"
+            tools:text="Яке" />
+
+        <ImageView
+            android:id="@+id/icon_temp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="12dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_thermometer"
+            app:layout_constraintBottom_toBottomOf="@id/text_temp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_temp"
+            app:tint="?attr/colorSecondary" />
+
+        <TextView
+            android:id="@+id/text_temp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="14dp"
+            android:textAppearance="?attr/textAppearanceLabelLarge"
+            android:textColor="?attr/colorSecondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon_temp"
+            app:layout_constraintTop_toBottomOf="@id/text_type"
+            tools:text="-10° … 8°" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

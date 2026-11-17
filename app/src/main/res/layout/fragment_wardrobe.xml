@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Екран „Гардероб“: филтри + брояч + решетка (или празно състояние). -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.wardrobe.WardrobeFragment">
+
+    <!-- Филтри по тип - плъзгат се хоризонтално -->
+    <HorizontalScrollView
+        android:id="@+id/scroll_filters"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingHorizontal="16dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:checkedChip="@id/chip_all"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_all"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_all" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_top"
+                style="@style/Widget.WhatToWear.Chip.FilterWithIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_tops"
+                app:chipIcon="@drawable/ic_type_top" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_bottom"
+                style="@style/Widget.WhatToWear.Chip.FilterWithIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_bottoms"
+                app:chipIcon="@drawable/ic_type_bottom" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_jacket"
+                style="@style/Widget.WhatToWear.Chip.FilterWithIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_jackets"
+                app:chipIcon="@drawable/ic_type_jacket" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_shoes"
+                style="@style/Widget.WhatToWear.Chip.FilterWithIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_shoes"
+                app:chipIcon="@drawable/ic_type_shoes" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_accessory"
+                style="@style/Widget.WhatToWear.Chip.FilterWithIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_accessories"
+                app:chipIcon="@drawable/ic_type_accessory" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <!-- Втори ред: подвидове на избрания тип (скрит при „Всички“). Чиповете се създават от кода. -->
+    <HorizontalScrollView
+        android:id="@+id/scroll_subtypes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingHorizontal="16dp"
+        android:scrollbars="none"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scroll_filters"
+        tools:visibility="visible">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_subtype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipSpacingHorizontal="6dp"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true" />
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/text_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        android:textAppearance="?attr/textAppearanceLabelLarge"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scroll_subtypes"
+        tools:text="5 дрехи" />
+
+    <!-- Решетката с дрехи -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_clothes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="96dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_count"
+        tools:itemCount="6"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/item_clothing"
+        tools:spanCount="2" />
+
+    <!-- Празно състояние. В NestedScrollView, за да не се реже на нисък екран. -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/layout_empty"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_count"
+        tools:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="16dp">
+
+        <ImageView
+            android:layout_width="@dimen/empty_icon_size"
+            android:layout_height="@dimen/empty_icon_size"
+            android:background="@drawable/bg_empty_circle"
+            android:importantForAccessibility="no"
+            android:padding="@dimen/empty_icon_padding"
+            android:src="@drawable/ic_wardrobe"
+            app:tint="?attr/colorOnPrimaryContainer" />
+
+        <TextView
+            android:id="@+id/text_empty_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/empty_title_margin_top"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textColor="?attr/colorOnSurface"
+            android:textStyle="bold"
+            tools:text="@string/wardrobe_empty_title" />
+
+        <TextView
+            android:id="@+id/text_empty_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            tools:text="@string/wardrobe_empty_subtitle" />
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Зареждане -->
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

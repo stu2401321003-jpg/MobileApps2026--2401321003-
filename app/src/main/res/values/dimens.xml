@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Празно състояние - портретен режим -->
+    <dimen name="empty_icon_size">120dp</dimen>
+    <dimen name="empty_icon_padding">30dp</dimen>
+    <dimen name="empty_title_margin_top">24dp</dimen>
+</resources>

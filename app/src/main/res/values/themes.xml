@@ -1,9 +1,84 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!--
+        Основната тема. Цветовете идват от colors.xml; в тъмен режим Android
+        автоматично взима values-night/colors.xml - затова тук няма нужда
+        да пишем две отделни теми.
+    -->
     <style name="Base.Theme.WhatToWearProject" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/on_primary_container</item>
+
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+        <item name="colorSecondaryContainer">@color/secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/on_secondary_container</item>
+
+        <item name="colorTertiary">@color/tertiary</item>
+        <item name="colorOnTertiary">@color/on_tertiary</item>
+        <item name="colorTertiaryContainer">@color/tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/on_tertiary_container</item>
+
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/on_error</item>
+        <item name="colorErrorContainer">@color/error_container</item>
+        <item name="colorOnErrorContainer">@color/on_error_container</item>
+
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnBackground">@color/on_background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="colorSurfaceVariant">@color/surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
+        <item name="colorOutline">@color/outline</item>
+        <item name="colorOutlineVariant">@color/outline_variant</item>
+        <item name="colorSurfaceContainerLowest">@color/surface_container_lowest</item>
+        <item name="colorSurfaceContainerLow">@color/surface_container_low</item>
+        <item name="colorSurfaceContainer">@color/surface_container</item>
+        <item name="colorSurfaceContainerHigh">@color/surface_container_high</item>
+        <item name="colorSurfaceContainerHighest">@color/surface_container_highest</item>
+
+        <!-- По-заоблени ъгли за карти, бутони и чипове -->
+        <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.WhatToWear.Small</item>
+        <item name="shapeAppearanceCornerMedium">@style/ShapeAppearance.WhatToWear.Medium</item>
+        <item name="shapeAppearanceCornerLarge">@style/ShapeAppearance.WhatToWear.Large</item>
+
+        <!-- Светли/тъмни икони в системната лента според темата -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">@bool/light_system_bars</item>
     </style>
 
     <style name="Theme.WhatToWearProject" parent="Base.Theme.WhatToWearProject" />
+
+    <style name="ShapeAppearance.WhatToWear.Small" parent="ShapeAppearance.Material3.Corner.Small">
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeAppearance.WhatToWear.Medium" parent="ShapeAppearance.Material3.Corner.Medium">
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="ShapeAppearance.WhatToWear.Large" parent="ShapeAppearance.Material3.Corner.Large">
+        <item name="cornerSize">28dp</item>
+    </style>
+
+    <!-- Чип-филтър с икона на типа дреха -->
+    <style name="Widget.WhatToWear.Chip.FilterWithIcon" parent="Widget.Material3.Chip.Filter">
+        <item name="chipIconVisible">true</item>
+        <item name="chipIconTint">?attr/colorOnSurfaceVariant</item>
+        <item name="chipIconSize">18dp</item>
+    </style>
+
+    <!-- Чип за подвид: по-малък и в коралов цвят, за да се различава от основните типове -->
+    <style name="Widget.WhatToWear.Chip.Subtype" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_subtype_background</item>
+        <item name="checkedIconTint">?attr/colorOnSecondaryContainer</item>
+        <item name="chipMinHeight">30dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelMedium</item>
+    </style>
+
+    <!-- Заглавие в горната лента: по-голямо и удебелено -->
+    <style name="TextAppearance.WhatToWear.ToolbarTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

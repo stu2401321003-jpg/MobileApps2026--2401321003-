@@ -1,3 +1,61 @@
 <resources>
-    <string name="app_name">WhatToWear-Project</string>
+    <string name="app_name">Какво да облека?</string>
+
+    <!-- Заглавия на екраните -->
+    <string name="title_home">Начало</string>
+    <string name="title_wardrobe">Гардероб</string>
+
+    <!-- Временни текстове, докато екраните са празни -->
+    <string name="home_placeholder">Тук ще е времето и тоалетът за днес</string>
+
+    <!-- Типове дрехи (единствено число) -->
+    <string name="type_top">Горнище</string>
+    <string name="type_bottom">Долнище</string>
+    <string name="type_jacket">Яке</string>
+    <string name="type_shoes">Обувки</string>
+    <string name="type_accessory">Аксесоар</string>
+
+    <!-- Подвидове -->
+    <string name="subtype_t_shirt">Тениска</string>
+    <string name="subtype_blouse">Блуза</string>
+    <string name="subtype_shirt">Риза</string>
+    <string name="subtype_sweater">Пуловер</string>
+    <string name="subtype_sweatshirt">Суитшърт</string>
+    <string name="subtype_jeans">Дънки</string>
+    <string name="subtype_trousers">Панталон</string>
+    <string name="subtype_leggings">Клин</string>
+    <string name="subtype_skirt">Пола</string>
+    <string name="subtype_shorts">Шорти</string>
+    <string name="subtype_jacket">Яке</string>
+    <string name="subtype_coat">Палто</string>
+    <string name="subtype_trench_coat">Шлифер</string>
+    <string name="subtype_vest">Елек</string>
+    <string name="subtype_sneakers">Маратонки</string>
+    <string name="subtype_boots">Ботуши</string>
+    <string name="subtype_shoes">Обувки</string>
+    <string name="subtype_sandals">Сандали</string>
+    <string name="subtype_umbrella">Чадър</string>
+    <string name="subtype_hat">Шапка</string>
+    <string name="subtype_scarf">Шал</string>
+    <string name="subtype_gloves">Ръкавици</string>
+
+    <!-- Филтри в гардероба (множествено число) -->
+    <string name="filter_all">Всички</string>
+    <string name="filter_tops">Горнища</string>
+    <string name="filter_bottoms">Долнища</string>
+    <string name="filter_jackets">Якета</string>
+    <string name="filter_shoes">Обувки</string>
+    <string name="filter_accessories">Аксесоари</string>
+
+    <!-- Гардероб -->
+    <plurals name="clothes_count">
+        <item quantity="one">%d дреха</item>
+        <item quantity="other">%d дрехи</item>
+    </plurals>
+    <string name="temp_range">%1$d° … %2$d°</string>
+    <string name="waterproof">Става за дъжд</string>
+    <string name="wardrobe_empty_title">Гардеробът е празен</string>
+    <string name="wardrobe_empty_subtitle">Добави първата си дреха - снимай я и задай за каква температура е.</string>
+    <string name="wardrobe_empty_filter_title">Няма нищо тук</string>
+    <string name="wardrobe_empty_filter_subtitle">Още нямаш дрехи от този вид.</string>
 </resources>

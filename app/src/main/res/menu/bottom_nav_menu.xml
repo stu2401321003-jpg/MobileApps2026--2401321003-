@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- id-тата съвпадат с id-тата в nav_graph.xml - така Navigation ги свързва автоматично. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/wardrobeFragment"
+        android:icon="@drawable/ic_wardrobe"
+        android:title="@string/title_wardrobe" />
+
+</menu>
