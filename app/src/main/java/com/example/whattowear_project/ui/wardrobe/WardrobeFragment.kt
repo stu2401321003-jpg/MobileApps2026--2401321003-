@@ -5,22 +5,26 @@ import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.children
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.whattowear_project.R
 import com.example.whattowear_project.data.entity.ClothingItem
 import com.example.whattowear_project.data.entity.ClothingSubtype
 import com.example.whattowear_project.data.entity.ClothingType
 import com.example.whattowear_project.databinding.FragmentWardrobeBinding
-import com.example.whattowear_project.ui.common.labelRes
+import com.example.whattowear_project.ui.common.NavArgs
+import com.example.whattowear_project.ui.common.checkSubtypeChip
+import com.example.whattowear_project.ui.common.checkedSubtype
+import com.example.whattowear_project.ui.common.setSubtypeChips
 import com.example.whattowear_project.viewmodel.WardrobeViewModel
-import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
@@ -68,19 +72,36 @@ class WardrobeFragment : Fragment() {
 
         // Адаптерът е локална променлива, а не поле - така не задържа стария изглед (memory leak).
         val adapter = ClothingAdapter(
-            onItemClick = { /* Екранът „Детайли“ идва в следваща стъпка. */ },
+            onItemClick = { item ->
+                findNavController().navigate(
+                    R.id.action_wardrobe_to_detail,
+                    bundleOf(NavArgs.ITEM_ID to item.id),
+                )
+            },
         )
         binding.recyclerClothes.layoutManager =
             GridLayoutManager(requireContext(), resources.getInteger(R.integer.grid_columns))
         binding.recyclerClothes.adapter = adapter
 
+        // Бутоните „Добави“ отварят формата.
+        val openAddForm = View.OnClickListener {
+            findNavController().navigate(R.id.action_wardrobe_to_addClothing)
+        }
+        binding.fabAdd.setOnClickListener(openAddForm)
+        binding.buttonAddFirst.setOnClickListener(openAddForm)
+
+        // Плаващият бутон се свива при скрол надолу и се разгъва при скрол нагоре.
+        binding.recyclerClothes.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0) binding.fabAdd.shrink() else if (dy < 0) binding.fabAdd.extend()
+            }
+        })
+
         binding.chipGroupFilter.setOnCheckedStateChangeListener { _, checkedIds ->
             if (!isUpdatingChips) viewModel.selectType(chipToType[checkedIds.firstOrNull()])
         }
-        binding.chipGroupSubtype.setOnCheckedStateChangeListener { group, checkedIds ->
-            if (isUpdatingChips) return@setOnCheckedStateChangeListener
-            val chip = checkedIds.firstOrNull()?.let { group.findViewById<Chip>(it) }
-            viewModel.selectSubtype(chip?.tag as ClothingSubtype?)
+        binding.chipGroupSubtype.setOnCheckedStateChangeListener { group, _ ->
+            if (!isUpdatingChips) viewModel.selectSubtype(group.checkedSubtype)
         }
 
         // Слушаме ViewModel-а само докато екранът е видим (STARTED).
@@ -109,10 +130,7 @@ class WardrobeFragment : Fragment() {
         if (type != subtypeRowType || binding.chipGroupSubtype.childCount == 0) {
             buildSubtypeRow(type)
         }
-        binding.chipGroupSubtype.children
-            .map { it as Chip }
-            .firstOrNull { it.tag == subtype }
-            ?.isChecked = true
+        binding.chipGroupSubtype.checkSubtypeChip(subtype)
 
         isUpdatingChips = false
     }
@@ -123,19 +141,10 @@ class WardrobeFragment : Fragment() {
         TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
 
         subtypeRowType = type
-        val group = binding.chipGroupSubtype
-        group.removeAllViews()
         binding.scrollSubtypes.isVisible = type != null
-        if (type == null) return
-
-        val subtypes = listOf<ClothingSubtype?>(null) + ClothingSubtype.forType(type)
-        for (subtype in subtypes) {
-            val chip = layoutInflater.inflate(R.layout.item_filter_chip, group, false) as Chip
-            chip.id = View.generateViewId()
-            chip.tag = subtype
-            chip.setText(subtype?.labelRes ?: R.string.filter_all)
-            group.addView(chip)
-        }
+        // null отпред = чип „Всички“.
+        val subtypes = if (type == null) emptyList() else listOf(null) + ClothingSubtype.forType(type)
+        binding.chipGroupSubtype.setSubtypeChips(subtypes)
         binding.scrollSubtypes.scrollTo(0, 0)
     }
 

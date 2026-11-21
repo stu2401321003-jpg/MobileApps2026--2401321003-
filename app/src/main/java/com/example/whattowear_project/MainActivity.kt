@@ -5,8 +5,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.whattowear_project.databinding.ActivityMainBinding
@@ -17,6 +20,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
+
+    /** Главните екрани - на тях има лента с табове и няма стрелка „назад“. */
+    private val topLevelDestinations = setOf(R.id.homeFragment, R.id.wardrobeFragment)
+    private val appBarConfiguration = AppBarConfiguration(topLevelDestinations)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,13 +46,22 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
+        navController = navHostFragment.navController
 
-        // Двата таба са „главни“ екрани, затова на тях няма стрелка „назад“.
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment, R.id.wardrobeFragment))
         setupActionBarWithNavController(navController, appBarConfiguration)
         // Портретно има bottomNav, хоризонтално - navRail. Другото е null.
         binding.bottomNav?.setupWithNavController(navController)
         binding.navRail?.setupWithNavController(navController)
+
+        // На вътрешните екрани (напр. „Нова дреха“) скриваме табовете - там само пречат.
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val isTopLevel = destination.id in topLevelDestinations
+            binding.bottomNav?.isVisible = isTopLevel
+            binding.navRail?.isVisible = isTopLevel
+        }
     }
+
+    /** Стрелката „назад“ в горната лента. */
+    override fun onSupportNavigateUp(): Boolean =
+        navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
 }

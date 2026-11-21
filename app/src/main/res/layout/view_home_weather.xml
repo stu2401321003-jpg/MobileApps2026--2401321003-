@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Картата с времето на началния екран (вмъква се с <include> в портретния и хоризонталния layout). -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="0dp"
+    app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
+    app:strokeWidth="0dp">
+
+    <!-- Фонът (преливка) се сменя от кода според времето -->
+    <LinearLayout
+        android:id="@+id/hero_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_hero_day"
+        android:minHeight="230dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Град + обнови -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_city"
+                style="@style/Widget.WhatToWear.Chip.OnHero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipIcon="@drawable/ic_location"
+                tools:text="Пловдив" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_refresh"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/weather_refresh"
+                app:icon="@drawable/ic_refresh"
+                app:iconTint="@android:color/white" />
+        </LinearLayout>
+
+        <!-- Готово: температура, описание, икона, статистики -->
+        <LinearLayout
+            android:id="@+id/layout_weather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:textAppearance="?attr/textAppearanceDisplayLarge"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        tools:text="14°" />
+
+                    <TextView
+                        android:id="@+id/text_condition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceTitleLarge"
+                        android:textColor="@android:color/white"
+                        tools:text="Облачно" />
+
+                    <TextView
+                        android:id="@+id/text_feels_like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textColor="@color/hero_text_secondary"
+                        tools:text="Усеща се като 13°" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/image_weather"
+                    android:layout_width="112dp"
+                    android:layout_height="112dp"
+                    android:importantForAccessibility="no"
+                    tools:src="@drawable/ic_weather_partly_day" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_min_max"
+                    style="@style/Widget.WhatToWear.HeroStat"
+                    app:drawableStartCompat="@drawable/ic_thermometer"
+                    tools:text="7° / 18°" />
+
+                <TextView
+                    android:id="@+id/text_rain_chance"
+                    style="@style/Widget.WhatToWear.HeroStat"
+                    app:drawableStartCompat="@drawable/ic_water_drop"
+                    tools:text="25%" />
+
+                <TextView
+                    android:id="@+id/text_wind"
+                    style="@style/Widget.WhatToWear.HeroStat"
+                    app:drawableStartCompat="@drawable/ic_air"
+                    tools:text="5 км/ч" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Няма град / грешка: текст + бутон -->
+        <LinearLayout
+            android:id="@+id/layout_hero_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/text_hero_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="@android:color/white"
+                tools:text="@string/weather_no_city" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_hero_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@android:color/white"
+                android:textColor="@color/primary"
+                app:iconTint="@color/primary"
+                tools:text="@string/choose_city" />
+        </LinearLayout>
+
+        <!-- Зареждане -->
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:indicatorColor="@android:color/white" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

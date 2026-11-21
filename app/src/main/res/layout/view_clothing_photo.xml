@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Голямата снимка на дрехата (или цветен фон + икона, ако няма снимка).
+    Ползва се и в портретния, и в хоризонталния layout на „Детайли“ (<include>).
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/type_jacket">
+
+    <ImageView
+        android:id="@+id/image_type_icon"
+        android:layout_width="112dp"
+        android:layout_height="112dp"
+        android:layout_gravity="center"
+        android:alpha="0.85"
+        android:importantForAccessibility="no"
+        app:tint="@color/on_type"
+        tools:src="@drawable/ic_type_jacket" />
+
+    <ImageView
+        android:id="@+id/image_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
+</FrameLayout>

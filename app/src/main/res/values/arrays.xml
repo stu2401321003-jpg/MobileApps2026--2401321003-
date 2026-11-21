@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Начален температурен диапазон във формата (°C) -->
+    <array name="default_temp_range">
+        <item>5.0</item>
+        <item>20.0</item>
+    </array>
+</resources>

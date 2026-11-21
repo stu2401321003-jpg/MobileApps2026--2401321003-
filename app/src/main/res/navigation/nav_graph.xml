@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Навигационна графика: всички екрани (destinations) и откъде започваме. -->
+<!-- Навигационна графика: всички екрани (destinations), преходите (actions) и откъде започваме. -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,12 +10,90 @@
         android:id="@+id/homeFragment"
         android:name="com.example.whattowear_project.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+        <!-- Начало → Детайли (натискане на дреха от тоалета) -->
+        <action
+            android:id="@+id/action_home_to_detail"
+            app:destination="@id/clothingDetailFragment"
+            app:enterAnim="@anim/nav_slide_in_right"
+            app:exitAnim="@anim/nav_fade_out"
+            app:popEnterAnim="@anim/nav_fade_in"
+            app:popExitAnim="@anim/nav_slide_out_right" />
+
+        <!-- Начало → Избери град -->
+        <action
+            android:id="@+id/action_home_to_citySearch"
+            app:destination="@id/citySearchFragment"
+            app:enterAnim="@anim/nav_slide_in_right"
+            app:exitAnim="@anim/nav_fade_out"
+            app:popEnterAnim="@anim/nav_fade_in"
+            app:popExitAnim="@anim/nav_slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/citySearchFragment"
+        android:name="com.example.whattowear_project.ui.city.CitySearchFragment"
+        android:label="@string/title_city_search"
+        tools:layout="@layout/fragment_city_search" />
 
     <fragment
         android:id="@+id/wardrobeFragment"
         android:name="com.example.whattowear_project.ui.wardrobe.WardrobeFragment"
         android:label="@string/title_wardrobe"
-        tools:layout="@layout/fragment_wardrobe" />
+        tools:layout="@layout/fragment_wardrobe">
+
+        <!-- Гардероб → Нова дреха -->
+        <action
+            android:id="@+id/action_wardrobe_to_addClothing"
+            app:destination="@id/addClothingFragment"
+            app:enterAnim="@anim/nav_slide_in_right"
+            app:exitAnim="@anim/nav_fade_out"
+            app:popEnterAnim="@anim/nav_fade_in"
+            app:popExitAnim="@anim/nav_slide_out_right" />
+
+        <!-- Гардероб → Детайли за една дреха -->
+        <action
+            android:id="@+id/action_wardrobe_to_detail"
+            app:destination="@id/clothingDetailFragment"
+            app:enterAnim="@anim/nav_slide_in_right"
+            app:exitAnim="@anim/nav_fade_out"
+            app:popEnterAnim="@anim/nav_fade_in"
+            app:popExitAnim="@anim/nav_slide_out_right" />
+    </fragment>
+
+    <!-- Детайли: изисква id на дрехата -->
+    <fragment
+        android:id="@+id/clothingDetailFragment"
+        android:name="com.example.whattowear_project.ui.detail.ClothingDetailFragment"
+        android:label="@string/title_detail"
+        tools:layout="@layout/fragment_clothing_detail">
+
+        <argument
+            android:name="itemId"
+            app:argType="long" />
+
+        <!-- Детайли → Редактиране (същата форма, но с id) -->
+        <action
+            android:id="@+id/action_detail_to_edit"
+            app:destination="@id/addClothingFragment"
+            app:enterAnim="@anim/nav_slide_in_right"
+            app:exitAnim="@anim/nav_fade_out"
+            app:popEnterAnim="@anim/nav_fade_in"
+            app:popExitAnim="@anim/nav_slide_out_right" />
+    </fragment>
+
+    <!-- Форма: без itemId (-1) = нова дреха, с itemId = редактиране -->
+    <fragment
+        android:id="@+id/addClothingFragment"
+        android:name="com.example.whattowear_project.ui.add.AddClothingFragment"
+        android:label="@string/title_add_clothing"
+        tools:layout="@layout/fragment_add_clothing">
+
+        <argument
+            android:name="itemId"
+            android:defaultValue="-1L"
+            app:argType="long" />
+    </fragment>
 
 </navigation>

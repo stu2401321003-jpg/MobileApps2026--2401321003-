@@ -77,6 +77,77 @@
         <item name="android:textAppearance">?attr/textAppearanceLabelMedium</item>
     </style>
 
+    <!-- Заглавие на секция във формата („Име“, „Тип“…) -->
+    <style name="TextAppearance.WhatToWear.SectionTitle" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceTitleSmall</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <!-- Карта във формата: мек фон, без сянка и рамка -->
+    <style name="Widget.WhatToWear.FormCard" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">?attr/colorSurfaceContainerLow</item>
+        <item name="shapeAppearance">?attr/shapeAppearanceCornerLarge</item>
+    </style>
+
+    <!-- Етикет в „Детайли“ (не се натиска) -->
+    <style name="Widget.WhatToWear.Chip.Info" parent="Widget.Material3.Chip.Assist">
+        <item name="android:clickable">false</item>
+        <item name="android:focusable">false</item>
+        <item name="chipIconTint">?attr/colorPrimary</item>
+        <item name="chipBackgroundColor">?attr/colorSurfaceContainerLow</item>
+        <item name="chipStrokeWidth">0dp</item>
+    </style>
+
+    <!-- Бутон за опасно действие (Изтрий): червена рамка и текст -->
+    <style name="Widget.WhatToWear.Button.Danger" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">?attr/colorError</item>
+        <item name="iconTint">?attr/colorError</item>
+        <item name="strokeColor">?attr/colorError</item>
+        <item name="rippleColor">?attr/colorErrorContainer</item>
+    </style>
+
+    <!-- Чип върху цветната карта за времето (бял текст, полупрозрачен фон) -->
+    <style name="Widget.WhatToWear.Chip.OnHero" parent="Widget.Material3.Chip.Assist">
+        <item name="chipBackgroundColor">@color/hero_overlay</item>
+        <!-- M3 рисува отдолу още един слой (surface) - бял по подразбиране. Правим го прозрачен. -->
+        <item name="chipSurfaceColor">@android:color/transparent</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="chipMinHeight">40dp</item>
+        <item name="chipIconTint">@android:color/white</item>
+        <item name="chipIconVisible">true</item>
+        <!-- Стрелка ▾ отдясно - показва, че градът може да се смени -->
+        <item name="closeIcon">@drawable/ic_arrow_drop_down</item>
+        <item name="closeIconVisible">true</item>
+        <item name="closeIconTint">@android:color/white</item>
+        <item name="closeIconSize">22dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAppearance">@style/TextAppearance.WhatToWear.HeroChip</item>
+        <item name="rippleColor">@color/hero_overlay</item>
+    </style>
+
+    <style name="TextAppearance.WhatToWear.HeroChip" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <!-- Статистика в картата за времето („хапче“ с икона) -->
+    <style name="Widget.WhatToWear.HeroStat" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:background">@drawable/bg_hero_pill</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingHorizontal">10dp</item>
+        <item name="android:paddingVertical">6dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="drawableTint">@android:color/white</item>
+    </style>
+
     <!-- Заглавие в горната лента: по-голямо и удебелено -->
     <style name="TextAppearance.WhatToWear.ToolbarTitle" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:textStyle">bold</item>

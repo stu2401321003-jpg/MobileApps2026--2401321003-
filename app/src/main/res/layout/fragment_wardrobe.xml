@@ -182,8 +182,28 @@
             android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textColor="?attr/colorOnSurfaceVariant"
             tools:text="@string/wardrobe_empty_subtitle" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_add_first"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/wardrobe_add_first"
+            app:icon="@drawable/ic_add" />
     </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <!-- Плаващ бутон „Добави“ - свива се при скрол надолу -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/wardrobe_add"
+        app:icon="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Зареждане -->
     <com.google.android.material.progressindicator.CircularProgressIndicator

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Нужно за заявките към Open-Meteo (времето и търсенето на град). -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".WhatToWearApplication"
         android:allowBackup="true"

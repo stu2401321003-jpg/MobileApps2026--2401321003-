@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Съвет в коралов цвят, напр. „Нямаш обувки за 3°“. -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/bg_tip"
+    android:drawablePadding="10dp"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="14dp"
+    android:paddingVertical="12dp"
+    android:textAppearance="?attr/textAppearanceBodyMedium"
+    android:textColor="?attr/colorOnSecondaryContainer"
+    app:drawableStartCompat="@drawable/ic_info"
+    app:drawableTint="?attr/colorOnSecondaryContainer"
+    tools:text="Нямаш обувки за 3°. Добави такива в гардероба." />

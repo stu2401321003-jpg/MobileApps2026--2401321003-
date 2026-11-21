@@ -5,8 +5,51 @@
     <string name="title_home">Начало</string>
     <string name="title_wardrobe">Гардероб</string>
 
-    <!-- Временни текстове, докато екраните са празни -->
-    <string name="home_placeholder">Тук ще е времето и тоалетът за днес</string>
+    <!-- Начало: времето -->
+    <string name="weather_clear">Ясно</string>
+    <string name="weather_partly_cloudy">Разкъсана облачност</string>
+    <string name="weather_cloudy">Облачно</string>
+    <string name="weather_fog">Мъгла</string>
+    <string name="weather_drizzle">Ръми</string>
+    <string name="weather_rain">Дъжд</string>
+    <string name="weather_snow">Сняг</string>
+    <string name="weather_thunderstorm">Гръмотевична буря</string>
+    <string name="weather_feels_like">Усеща се като %d°</string>
+    <string name="weather_min_max">%1$d° / %2$d°</string>
+    <string name="weather_rain_chance">%d%%</string>
+    <string name="weather_wind">%d км/ч</string>
+    <string name="weather_refresh">Обнови времето</string>
+    <string name="weather_no_city">Избери град, за да ти кажем какво е времето навън.</string>
+    <string name="weather_error">Не успяхме да заредим времето. Провери интернет връзката.</string>
+    <string name="choose_city">Избери град</string>
+    <string name="change_city">Смени града</string>
+    <string name="retry">Опитай пак</string>
+    <string name="home_outfit_title">Какво да облечеш днес</string>
+
+    <!-- Тоалет -->
+    <string name="outfit_headline">Днес е %d°.</string>
+    <string name="outfit_headline_rain">Днес е %d° и вали.</string>
+    <string name="outfit_headline_snow">Днес е %d° и вали сняг.</string>
+    <string name="outfit_summary">Облечи: %s</string>
+    <string name="outfit_separator">" + "</string>
+    <string name="outfit_reason_cold">Под 5° якето е задължително</string>
+    <string name="outfit_reason_rain">Заради дъжда</string>
+    <string name="outfit_tip_missing_top">Нямаш горнище за %d°. Добави такова в гардероба.</string>
+    <string name="outfit_tip_missing_bottom">Нямаш долнище за %d°. Добави такова в гардероба.</string>
+    <string name="outfit_tip_missing_shoes">Нямаш обувки за %d°. Добави такива в гардероба.</string>
+    <string name="outfit_tip_missing_jacket">Студено е, а в гардероба нямаш яке!</string>
+    <string name="outfit_tip_missing_rain">Вали, а нямаш чадър или непромокаемо яке.</string>
+    <string name="outfit_nothing_fits">Нищо от гардероба не е за %d°. Виж съветите отдолу.</string>
+    <string name="outfit_waiting_for_weather">Щом заредим времето, ще ти предложим тоалет от твоя гардероб.</string>
+    <string name="outfit_empty_wardrobe">Гардеробът ти е празен. Добави няколко дрехи и ще ти казваме какво да облечеш.</string>
+    <string name="outfit_go_to_wardrobe">Към гардероба</string>
+
+    <!-- Избор на град -->
+    <string name="title_city_search">Избери град</string>
+    <string name="city_search_hint">Търси град</string>
+    <string name="city_search_idle">Напиши името на града си - напр. Пловдив</string>
+    <string name="city_search_nothing_found">Не намерихме такъв град. Провери името.</string>
+    <string name="error_no_connection">Няма връзка. Провери интернет и опитай пак.</string>
 
     <!-- Типове дрехи (единствено число) -->
     <string name="type_top">Горнище</string>
@@ -56,6 +99,42 @@
     <string name="waterproof">Става за дъжд</string>
     <string name="wardrobe_empty_title">Гардеробът е празен</string>
     <string name="wardrobe_empty_subtitle">Добави първата си дреха - снимай я и задай за каква температура е.</string>
+    <string name="wardrobe_add">Добави</string>
+    <string name="wardrobe_add_first">Добави дреха</string>
+
+    <!-- Форма „Нова дреха“ -->
+    <string name="title_add_clothing">Нова дреха</string>
+    <string name="form_section_name">Име</string>
+    <string name="form_name_hint">напр. Черно зимно яке</string>
+    <string name="form_section_type">Тип</string>
+    <string name="form_section_subtype">Вид</string>
+    <string name="form_section_temp">За каква температура е</string>
+    <string name="form_temp_hint">Ще я предлагаме, когато навън е в този диапазон.</string>
+    <string name="form_waterproof_hint">Непромокаемо яке, ботуши, чадър…</string>
+    <string name="form_save">Запази</string>
+    <string name="form_error_name_empty">Въведи име на дрехата</string>
+    <string name="form_error_name_too_long">Името е твърде дълго</string>
+    <string name="form_error_type">Избери тип на дрехата</string>
+    <string name="form_saved">Дрехата е добавена в гардероба</string>
+    <string name="temp_value">%d°</string>
+
+    <!-- Редактиране -->
+    <string name="title_edit_clothing">Редактиране</string>
+    <string name="form_save_changes">Запази промените</string>
+    <string name="form_saved_changes">Промените са запазени</string>
+
+    <!-- Детайли -->
+    <string name="title_detail">Детайли</string>
+    <string name="detail_temp_title">Подходяща температура</string>
+    <string name="detail_temp_description">Ще я предложим, когато навън е между %1$d° и %2$d°.</string>
+    <string name="detail_edit">Редактирай</string>
+    <string name="detail_delete">Изтрий</string>
+    <string name="delete_dialog_title">Да изтрия ли дрехата?</string>
+    <string name="delete_dialog_message">„%s“ ще бъде премахната от гардероба. Това действие не може да бъде отменено.</string>
+    <string name="delete_dialog_confirm">Изтрий</string>
+    <string name="dialog_cancel">Отказ</string>
+    <string name="detail_deleted">Дрехата е изтрита</string>
+
     <string name="wardrobe_empty_filter_title">Няма нищо тук</string>
     <string name="wardrobe_empty_filter_subtitle">Още нямаш дрехи от този вид.</string>
 </resources>

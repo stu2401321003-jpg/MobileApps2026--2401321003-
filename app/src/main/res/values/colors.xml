@@ -53,4 +53,8 @@
     <color name="type_shoes">#B0F1C3</color>
     <color name="type_accessory">#FCE1A8</color>
     <color name="on_type">#1F2A3D</color>
+
+    <!-- Полупрозрачно бяло върху цветната карта за времето (еднакво в двете теми) -->
+    <color name="hero_overlay">#33FFFFFF</color>
+    <color name="hero_text_secondary">#D9FFFFFF</color>
 </resources>
